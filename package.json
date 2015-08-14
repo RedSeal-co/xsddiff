@@ -7,7 +7,7 @@
     "xsddiff.js": "bin/xsddiff.js"
   },
   "author": "Matt Frantz <mfrantz@redsealnetworks.com>",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bluebird": "^2.9.34",
     "chalk": "^1.0.0",
