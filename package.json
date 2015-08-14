@@ -1,0 +1,26 @@
+{
+  "name": "xsddiff",
+  "version": "1.0.0",
+  "description": "Calculates difference between XSD files",
+  "bin": {
+    "xsddiff": "bin/xsddiff.sh",
+    "xsddiff.js": "bin/xsddiff.js"
+  },
+  "author": "Matt Frantz <mfrantz@redsealnetworks.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bluebird": "^2.9.34",
+    "chalk": "^1.0.0",
+    "commander": "^2.8.1",
+    "deep-diff": "^0.3.2",
+    "json-stable-stringify": "^1.0.0",
+    "lodash": "^3.9.3",
+    "source-map-support": "^0.2.10",
+    "xml2js": "^0.4.8"
+  },
+  "devDependencies": {
+    "tsd": "=0.6.1",
+    "tslint": "=2.4.0",
+    "typescript": "=1.5.3"
+  }
+}
