@@ -113,8 +113,11 @@ function makePrettyDiff(rawDiff) {
     // Transforms a single raw diff from deep-diff to make it more presentable.
     // Transform certain keys.
     var prettyKeys = {
-        path: makePrettyPath
+        path: makePrettyPath,
+        item: makePrettyDiff
     };
+    // We know we'll end up with a PrettyDiff, because we're transforming each field appropriately, so we reinterpret
+    // cast.
     var prettyDiff = _.mapValues(rawDiff, function (rawValue, key) {
         var makePretty = prettyKeys[key];
         return makePretty ? makePretty(rawValue) : rawValue;

@@ -20,7 +20,10 @@ import deepDiff = require('deep-diff');
 import fs = require('fs');
 import jsonStableStringify = require('json-stable-stringify');
 import P = require('bluebird');
+import types = require('./types');
 import xml2js = require('xml2js');
+
+import PrettyDiff = types.PrettyDiff;
 
 // Override the default program description.
 commander.usage(
@@ -166,15 +169,18 @@ interface MakePrettyTable {
 
 // ### makePrettyDiff
 // Transform the result of deep-diff into something we're not ashamed of.
-function makePrettyDiff(rawDiff: deepDiff.IDiff): deepDiff.IDiff {
+function makePrettyDiff(rawDiff: deepDiff.IDiff): PrettyDiff {
   // Transforms a single raw diff from deep-diff to make it more presentable.
 
   // Transform certain keys.
   var prettyKeys: MakePrettyTable = {
-    path: makePrettyPath
+    path: makePrettyPath,
+    item: makePrettyDiff
   };
 
-  var prettyDiff = _.mapValues(rawDiff, (rawValue: any, key: string): any => {
+  // We know we'll end up with a PrettyDiff, because we're transforming each field appropriately, so we reinterpret
+  // cast.
+  var prettyDiff = <PrettyDiff><any> _.mapValues(rawDiff, (rawValue: any, key: string): any => {
     var makePretty: MakePretty = prettyKeys[key];
     return makePretty ? makePretty(rawValue) : rawValue;
   });
@@ -182,7 +188,7 @@ function makePrettyDiff(rawDiff: deepDiff.IDiff): deepDiff.IDiff {
   return prettyDiff;
 }
 
-function makePrettyDiffs(rawDiffs: deepDiff.IDiff[]): deepDiff.IDiff[] {
+function makePrettyDiffs(rawDiffs: deepDiff.IDiff[]): PrettyDiff[] {
   // Transforms the raw output of deep-diff to make it more presentable.
   return _.map(rawDiffs, makePrettyDiff);
 }
@@ -213,9 +219,9 @@ function main(args: string[]): P<void> {
   // Compute the diff of the two JSON schemas.
     .spread((json1: JsonType, json2: JsonType): deepDiff.IDiff[] => deepDiff.diff(json1, json2))
   // Make the diff pretty.
-    .then((rawDiffs: deepDiff.IDiff[]): deepDiff.IDiff[] => makePrettyDiffs(rawDiffs))
+    .then((rawDiffs: deepDiff.IDiff[]): PrettyDiff[] => makePrettyDiffs(rawDiffs))
   // Write to stdout.
-    .then((diffJson: deepDiff.IDiff[]): P<void> => {
+    .then((diffJson: PrettyDiff[]): P<void> => {
       // Convert JSON to a string.
       var opts = {
         space: 2,

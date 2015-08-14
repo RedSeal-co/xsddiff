@@ -6,7 +6,7 @@
     "xsddiff": "bin/xsddiff.sh",
     "xsddiff.js": "bin/xsddiff.js"
   },
-  "author": "Matt Frantz <mfrantz@redsealnetworks.com>",
+  "author": "Matt Frantz <matthew.h.frantz@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "bluebird": "^2.9.34",
