@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:test="http://www.redseal.net/SCHEMAS/TEST/V1"
+            targetNamespace="http://www.redseal.net/SCHEMAS/TEST/V1" elementFormDefault="qualified">
+    <!-- =========================================================================================================== -->
+    <!-- Top Node Definition -->
+    <!-- =========================================================================================================== -->
+    <xsd:element name="test">
+        <xsd:complexType>
+            <xsd:all minOccurs="0">
+                <xsd:element name="child1" type="test:child1_complexType" minOccurs="0"/>
+                <xsd:element name="child2" type="test:child2_complexType" minOccurs="0"/>
+            </xsd:all>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="child1_complexType">
+        <xsd:attribute name="datetime" type="test:string256_simpleType" use="optional"/>
+        <xsd:attribute name="name" type="test:string256_simpleType" use="optional"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="child2_complexType">
+        <xsd:attribute name="name" type="test:string256_simpleType" use="optional"/>
+    </xsd:complexType>
+
+    <xsd:simpleType name="string256_simpleType">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="256"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>

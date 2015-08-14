@@ -28,6 +28,15 @@
     },
     "xml2js/xml2js.d.ts": {
       "commit": "0d1140ae97ef764b316096b93a9cf6e4e88f3825"
+    },
+    "mocha/mocha.d.ts": {
+      "commit": "0d1140ae97ef764b316096b93a9cf6e4e88f3825"
+    },
+    "chai/chai.d.ts": {
+      "commit": "0d1140ae97ef764b316096b93a9cf6e4e88f3825"
+    },
+    "debug/debug.d.ts": {
+      "commit": "0d1140ae97ef764b316096b93a9cf6e4e88f3825"
     }
   }
 }
