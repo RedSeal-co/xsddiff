@@ -1,9 +1,13 @@
 .PHONY: install install-npm install-tsd update-npm update-tsd
-.PHONY: clean clean-obj clean-tsd clean-npm
+.PHONY: clean clean-obj clean-tsd clean-npm clean-o
+.PHONY: test unittest
 
-default: compile bin/xsddiff.sh
+default: all
 
-TS_SRC=$(filter-out %.d.ts,$(wildcard bin/*.ts))
+all: install-tsd
+	$(MAKE) test
+
+TS_SRC=$(filter-out %.d.ts,$(wildcard bin/*.ts test/*.ts))
 TS_OBJ=$(patsubst %.ts,%.js,$(TS_SRC)) $(patsubst %.ts,%.js.map,$(TS_SRC)) $(patsubst %.ts,%.d.ts,$(TS_SRC))
 TSC=./node_modules/.bin/tsc
 TSC_OPTS=--module commonjs --target ES5 --sourceMap --declaration --noEmitOnError --noImplicitAny
@@ -16,7 +20,7 @@ compile: $(TS_OBJ)
 	$(TSC) $(TSC_OPTS) $< || (rm -f $*.js $*.js.map $*.d.ts && false)
 	$(TSLINT) $< || (rm -f $*.js $*.js.map $*.d.ts && false)
 
-clean: clean-tsd clean-npm
+clean: clean-tsd clean-npm clean-o
 
 clean-tsd:
 	rm -rf typings
@@ -26,6 +30,9 @@ clean-npm:
 
 clean-obj:
 	rm -f $(TS_OBJ)
+
+clean-o:
+	rm -f o
 
 install:
 	$(MAKE) install-npm
@@ -48,3 +55,8 @@ update-tsd:
 
 bin/xsddiff.sh : bin/xsddiff.js
 	touch $@ && chmod +x $@
+
+test: unittest
+
+unittest: compile bin/xsddiff.sh
+	./node_modules/.bin/mocha --timeout 60s --reporter=spec --ui tdd
