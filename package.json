@@ -1,6 +1,6 @@
 {
   "name": "xsddiff",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Calculates difference between XSD files",
   "bin": {
     "xsddiff": "bin/xsddiff.sh",
