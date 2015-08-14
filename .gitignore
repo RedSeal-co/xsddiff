@@ -2,3 +2,6 @@
 *.js.map
 *.d.ts
 !bin/*.js
+node_modules/
+typings/
+*~
