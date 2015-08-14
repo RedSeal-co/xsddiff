@@ -2,7 +2,10 @@
 .PHONY: clean clean-obj clean-tsd clean-npm clean-o
 .PHONY: test unittest
 
-default: test
+default: all
+
+all: install-tsd
+	$(MAKE) test
 
 TS_SRC=$(filter-out %.d.ts,$(wildcard bin/*.ts test/*.ts))
 TS_OBJ=$(patsubst %.ts,%.js,$(TS_SRC)) $(patsubst %.ts,%.js.map,$(TS_SRC)) $(patsubst %.ts,%.d.ts,$(TS_SRC))
