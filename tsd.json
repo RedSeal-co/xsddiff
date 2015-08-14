@@ -1,0 +1,33 @@
+{
+  "version": "v4",
+  "repo": "RedSeal-co/DefinitelyTyped",
+  "ref": "prod",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "bluebird/bluebird.d.ts": {
+      "commit": "0d1140ae97ef764b316096b93a9cf6e4e88f3825"
+    },
+    "chalk/chalk.d.ts": {
+      "commit": "0d1140ae97ef764b316096b93a9cf6e4e88f3825"
+    },
+    "node/node.d.ts": {
+      "commit": "0d1140ae97ef764b316096b93a9cf6e4e88f3825"
+    },
+    "commander/commander.d.ts": {
+      "commit": "0d1140ae97ef764b316096b93a9cf6e4e88f3825"
+    },
+    "deep-diff/deep-diff.d.ts": {
+      "commit": "0d1140ae97ef764b316096b93a9cf6e4e88f3825"
+    },
+    "json-stable-stringify/json-stable-stringify.d.ts": {
+      "commit": "0d1140ae97ef764b316096b93a9cf6e4e88f3825"
+    },
+    "lodash/lodash.d.ts": {
+      "commit": "0d1140ae97ef764b316096b93a9cf6e4e88f3825"
+    },
+    "xml2js/xml2js.d.ts": {
+      "commit": "0d1140ae97ef764b316096b93a9cf6e4e88f3825"
+    }
+  }
+}
